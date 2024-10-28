@@ -43,8 +43,8 @@ const Navbar = () => {
           }}
         >
           <img src={logo} alt='logo' className='w-9 h-9 object-contain' />
-          <p className='text-white text-[18px] font-bold cursor-pointer flex '>
-            Muhammad Maaz
+          <p className='text-white text-[18px] font-bold cursor-pointer flex ps-4'>
+           Muhammad  Maaz
           </p>
         </Link>
 
@@ -79,7 +79,7 @@ const Navbar = () => {
               {navLinks.map((nav) => (
                 <li
                   key={nav.id}
-                  className={`font-poppins font-medium cursor-pointer text-[16px] hover:text-white ${
+                  className={`font-poppins font-medium cursor-pointer text-[16px] ${
                     active === nav.title ? "text-white" : "text-secondary"
                   }`}
                   onClick={() => {
