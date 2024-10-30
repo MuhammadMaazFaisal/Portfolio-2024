@@ -11,9 +11,9 @@ import { fadeIn, textVariant } from "../utils/motion";
 const ProjectCard = ({
   index,
   name,
-  description,
+  intro,
   tags,
-  image,
+  video,
   source_code_link,
 }) => {
   return (
@@ -27,8 +27,12 @@ const ProjectCard = ({
         className='bg-tertiary p-5 rounded-2xl sm:w-[360px] w-full'
       >
         <div className='relative w-full h-[230px]'>
-          <img
-            src={image}
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            src={video}
             alt='project_image'
             className='w-full h-full object-cover rounded-2xl'
           />
@@ -48,8 +52,8 @@ const ProjectCard = ({
         </div>
 
         <div className='mt-5'>
-          <h3 className='text-white font-bold text-[24px]'>{name}</h3>
-          <p className='mt-2 text-secondary text-[14px]'>{description}</p>
+          <h3 className='text-white font-bold text-[22px] text-center'>{name}</h3>
+          <p className='mt-2 text-secondary text-[14px]'>{intro}</p>
         </div>
 
         <div className='mt-4 flex flex-wrap gap-2'>
@@ -97,4 +101,4 @@ const Works = () => {
   );
 };
 
-export default SectionWrapper(Works, "");
+export default SectionWrapper(Works, "projects");
