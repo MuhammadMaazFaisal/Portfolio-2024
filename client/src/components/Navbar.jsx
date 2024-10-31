@@ -29,27 +29,22 @@ const Navbar = () => {
   return (
     <>
       <header class="sticky top-0 inset-x-0 flex flex-wrap md:justify-start md:flex-nowrap z-50 w-full text-sm">
-      <nav class="mt-4 relative max-w-5xl w-full bg-white/10 backdrop-blur-md border border-gray-200 rounded-[2rem] mx-2 py-2.5 md:flex md:items-center md:justify-between md:py-0 md:px-4 md:mx-auto dark:bg-neutral-800/20 dark:border-neutral-700">
-      <div class="px-4 md:px-0 flex justify-between items-center">
+        <nav class="mt-4 relative max-w-5xl w-[90%] mx-auto bg-white/10 backdrop-blur-md border border-gray-200 rounded-[2rem] py-2.5 md:flex md:items-center md:justify-between md:py-0 md:px-4 md:mx-auto dark:bg-neutral-800/20 dark:border-neutral-700">
+          <div class="px-4 md:px-0 flex justify-between items-center">
             <div>
- 
-                <Link
-                  to="/"
-                  className="flex items-center gap-2"
-                  onClick={() => {
-                    setActive("");
-                    window.scrollTo(0, 0);
-                  }}
-                >
-                  <img
-                    src={logo}
-                    alt="logo"
-                    className="w-9 h-9 object-contain"
-                  />
-                  {/* <p className="text-white text-[18px] font-bold cursor-pointer flex ps-4 text-nowrap">
+              <Link
+                to="/"
+                className="flex items-center gap-2"
+                onClick={() => {
+                  setActive("");
+                  window.scrollTo(0, 0);
+                }}
+              >
+                <img src={logo} alt="logo" className="w-9 h-9 object-contain" />
+                {/* <p className="text-white text-[18px] font-bold cursor-pointer flex ps-4 text-nowrap">
                     Muhammad Maaz
                   </p> */}
-                </Link>
+              </Link>
             </div>
 
             <div class="md:hidden">
