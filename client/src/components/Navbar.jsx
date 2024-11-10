@@ -14,22 +14,54 @@ const Navbar = () => {
   useEffect(() => {
     const handleScroll = () => {
       const scrollTop = window.scrollY;
-      if (scrollTop > 100) {
-        setScrolled(true);
-      } else {
-        setScrolled(false);
-      }
+      setScrolled(scrollTop > 100);
     };
 
     window.addEventListener("scroll", handleScroll);
-
     return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  useEffect(() => {
+    // Intersection Observer to detect which section is in the viewport
+    const observerOptions = {
+      root: null,
+      rootMargin: "0px",
+      threshold: 0.5, // Trigger when 50% of the section is visible
+    };
+
+    const observerCallback = (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          setActive(entry.target.id); // Set active section ID based on the element's ID
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(observerCallback, observerOptions);
+
+    // Observe each section specified in navLinks
+    navLinks.forEach((nav) => {
+      const section = document.getElementById(nav.id);
+      if (section) observer.observe(section);
+    });
+
+    return () => {
+      // Unobserve when component unmounts
+      navLinks.forEach((nav) => {
+        const section = document.getElementById(nav.id);
+        if (section) observer.unobserve(section);
+      });
+    };
   }, []);
 
   return (
     <>
       <header className="sticky top-0 inset-x-0 flex flex-wrap md:justify-start md:flex-nowrap z-50 w-full text-sm">
-        <nav className="mt-4 relative max-w-5xl w-[90%] mx-auto bg-white/10 backdrop-blur-md border border-gray-200 rounded-[2rem] py-2.5 md:flex md:items-center md:justify-between md:py-0 md:px-4 md:mx-auto dark:bg-neutral-800/20 dark:border-neutral-700">
+        <nav
+          className={`mt-4 relative max-w-5xl w-[90%] mx-auto ${
+            scrolled ? "bg-opacity-90" : "bg-opacity-100"
+          } bg-white/10 backdrop-blur-md border border-gray-200 rounded-[2rem] py-2.5 md:flex md:items-center md:justify-between md:py-0 md:px-4 md:mx-auto dark:bg-neutral-800/20 dark:border-neutral-700`}
+        >
           <div className="px-4 md:px-0 flex justify-between items-center">
             <div>
               <Link
@@ -41,9 +73,6 @@ const Navbar = () => {
                 }}
               >
                 <img src={logo} alt="logo" className="w-9 h-9 object-contain" />
-                {/* <p className="text-white text-[18px] font-bold cursor-pointer flex ps-4 text-nowrap">
-                    Muhammad Maaz
-                  </p> */}
               </Link>
             </div>
 
@@ -102,12 +131,12 @@ const Navbar = () => {
                 <a
                   key={nav.id}
                   className={`${
-                    active === nav.title
+                    active === nav.id
                       ? "border-gray-800 font-medium text-gray-800 focus:outline-none dark:border-neutral-200 dark:text-white"
                       : "border-transparent text-gray-500 hover:text-gray-800 focus:outline-none dark:text-neutral-200 dark:hover:text-white"
                   } py-0.5 md:py-3 px-4 md:px-1 border-s-2 md:border-s-0 md:border-b-2 text-[16px]`}
                   href={`#${nav.id}`}
-                  onClick={() => setActive(nav.title)}
+                  onClick={() => setActive(nav.id)}
                 >
                   {nav.title}
                 </a>

@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import Tilt from "react-tilt";
 import { motion } from "framer-motion";
 import { styles } from "../styles";
@@ -6,7 +7,16 @@ import { github } from "../assets";
 import { SectionWrapper } from "../hoc";
 import { projects } from "../constants";
 import { fadeIn, textVariant, zoomIn } from "../utils/motion";
-import "preline"; // Make sure Preline.js is imported
+import "preline"; // Ensure Preline.js is imported
+
+const slugify = (str) => {
+  return str
+    .toLowerCase()
+    .trim()
+    .replace(/[^\w\s-]/g, "") // Remove non-word characters
+    .replace(/[\s_-]+/g, "-") // Replace spaces with hyphens
+    .replace(/^-+|-+$/g, ""); // Remove leading/trailing hyphens
+};
 
 const ProjectCard = ({
   index,
@@ -21,6 +31,7 @@ const ProjectCard = ({
     <motion.div
       variants={fadeIn("up", "spring", index * 0.5, 0.75)}
       onClick={onClick}
+      className="hs-tooltip relative"
     >
       <Tilt
         options={{
@@ -76,25 +87,64 @@ const ProjectCard = ({
           ))}
         </div>
       </Tilt>
+      <span
+        className="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 transition-opacity inline-block absolute z-10 py-1 px-2 bg-gray-900 text-xs font-medium text-white rounded shadow-sm"
+        role="tooltip"
+      >
+        Click to view more information
+      </span>
     </motion.div>
   );
 };
 
 const Works = () => {
   const [modalData, setModalData] = useState(null);
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const query = new URLSearchParams(location.search);
+  const projectSlug = query.get("project");
+
+  useEffect(() => {
+    if (projectSlug) {
+      const project = projects.find((p) => slugify(p.name) === projectSlug);
+      if (project) {
+        setModalData(project);
+        document.body.style.overflow = "hidden";
+
+        // Scroll to the projects section
+        const projectsSection = document.getElementById("projects");
+        if (projectsSection) {
+          projectsSection.scrollIntoView({ behavior: "smooth" });
+        }
+      } else {
+        // Invalid slug, remove the query parameter
+        navigate("/", { replace: true });
+      }
+    } else {
+      // If no project parameter, close any open modal
+      if (modalData) {
+        setModalData(null);
+        document.body.style.overflow = "auto";
+      }
+    }
+  }, [projectSlug, navigate]);
 
   const openModal = (project) => {
     setModalData(project);
-    document.body.style.overflow = "hidden"; // Disable background scrolling
+    document.body.style.overflow = "hidden";
+    navigate(`/?project=${slugify(project.name)}`);
   };
 
   const closeModal = () => {
     setModalData(null);
-    document.body.style.overflow = "auto"; // Enable background scrolling again
+    document.body.style.overflow = "auto";
+    navigate("/", { replace: true });
   };
 
   return (
     <>
+      {/* Existing content */}
       <motion.div variants={textVariant()}>
         <p className={`${styles.sectionSubText}`}>My work</p>
         <h2 className={`${styles.sectionHeadText}`}>Projects.</h2>
@@ -105,11 +155,11 @@ const Works = () => {
           variants={fadeIn("", "", 0.1, 1)}
           className="mt-3 text-secondary text-[17px] max-w-3xl leading-[30px]"
         >
-          Following projects showcases my skills and experience through
+          Following projects showcase my skills and experience through
           real-world examples of my work. Each project is briefly described with
-          links to code repositories and live demos in it. It reflects my
-          ability to solve complex problems, work with different technologies,
-          and manage projects effectively.
+          links to code repositories and live demos. It reflects my ability to
+          solve complex problems, work with different technologies, and manage
+          projects effectively.
         </motion.p>
       </div>
 
@@ -124,7 +174,6 @@ const Works = () => {
         ))}
       </div>
 
-      {/* Modal rendering based on state */}
       {modalData && (
         <div
           className="fixed inset-0 bg-black bg-opacity-60 backdrop-blur-sm flex items-center justify-center z-[100] overflow-y-auto"
@@ -207,7 +256,5 @@ const Works = () => {
     </>
   );
 };
-
-
 
 export default SectionWrapper(Works, "projects");
