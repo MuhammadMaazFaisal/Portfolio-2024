@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import Tilt from "react-tilt";
 import { motion } from "framer-motion";
 import { styles } from "../styles";
 import { github } from "../assets";
@@ -27,20 +26,34 @@ const ProjectCard = ({
   source_code_link,
   onClick,
 }) => {
+  const [tilt, setTilt] = useState({ x: 0, y: 0 });
+
+  const handleMouseMove = (e) => {
+    const { offsetX, offsetY, target } = e.nativeEvent;
+    const width = target.clientWidth;
+    const height = target.clientHeight;
+    const x = (offsetX / width) * 2 - 1; // Range from -1 to 1
+    const y = (offsetY / height) * 2 - 1; // Range from -1 to 1
+    setTilt({ x: x * 10, y: y * 10 }); // Adjust tilt intensity here
+  };
+
+  const handleMouseLeave = () => {
+    setTilt({ x: 0, y: 0 });
+  };
+
   return (
     <motion.div
       variants={fadeIn("up", "spring", index * 0.5, 0.75)}
       onClick={onClick}
       className="hs-tooltip relative"
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      style={{
+        transform: `rotateY(${tilt.x}deg) rotateX(${tilt.y}deg)`,
+        transition: "transform 0.2s ease-out",
+      }}
     >
-      <Tilt
-        options={{
-          max: 45,
-          scale: 1,
-          speed: 450,
-        }}
-        className="bg-tertiary p-5 rounded-2xl sm:w-[360px] w-full cursor-pointer"
-      >
+      <div className="bg-tertiary p-5 rounded-2xl sm:w-[360px] w-full cursor-pointer">
         <div className="relative w-full h-[230px]">
           <video
             autoPlay
@@ -86,7 +99,7 @@ const ProjectCard = ({
             </p>
           ))}
         </div>
-      </Tilt>
+      </div>
       <span
         className="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 transition-opacity inline-block absolute z-10 py-1 px-2 bg-gray-900 text-xs font-medium text-white rounded shadow-sm"
         role="tooltip"
@@ -96,6 +109,7 @@ const ProjectCard = ({
     </motion.div>
   );
 };
+
 
 const Works = () => {
   const [modalData, setModalData] = useState(null);
