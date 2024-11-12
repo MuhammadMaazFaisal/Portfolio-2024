@@ -4,11 +4,11 @@ const Footer = () => {
   return (
     <footer className="mt-auto w-full max-w-[85rem] py-10 px-4 sm:px-6 lg:px-8 mx-auto">
       <div className="pt-5 mt-5 border-t border-gray-200 dark:border-neutral-700">
-        <div className="sm:flex sm:justify-between sm:items-center">
+        <div className="flex justify-between items-center">
           <div className="flex flex-wrap items-center gap-3">
             <p className="text-sm text-gray-400 dark:text-neutral-400">
               © {new Date().getFullYear()}{" "}
-              <span className="hidden sm:inline">
+              <span className="inline">
                 - {info.personalInfo.name}
               </span>
             </p>
