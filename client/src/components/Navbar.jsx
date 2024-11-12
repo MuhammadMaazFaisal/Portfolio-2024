@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+import { HashLink } from "react-router-hash-link";
 import "preline";
 
-import { styles } from "../styles";
 import { navLinks } from "../constants";
-import { logo, menu, close } from "../assets";
+import { logo } from "../assets";
 
 const Navbar = () => {
   const [active, setActive] = useState("");
-  const [toggle, setToggle] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -22,37 +23,60 @@ const Navbar = () => {
   }, []);
 
   useEffect(() => {
-    // Intersection Observer to detect which section is in the viewport
-    const observerOptions = {
-      root: null,
-      rootMargin: "0px",
-      threshold: 0.5, // Trigger when 50% of the section is visible
-    };
+    // Set active link based on location
+    const path = location.pathname;
+    const hash = location.hash;
 
-    const observerCallback = (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          setActive(entry.target.id); // Set active section ID based on the element's ID
-        }
-      });
-    };
+    if (path === "/") {
+      if (hash) {
+        setActive(hash.replace("#", ""));
+      } else {
+        setActive("home");
+      }
+    } else if (path.startsWith("/blogs")) {
+      setActive("my-journal");
+    } else {
+      setActive("");
+    }
+  }, [location]);
 
-    const observer = new IntersectionObserver(observerCallback, observerOptions);
+  useEffect(() => {
+    if (location.pathname === "/") {
+      // Intersection Observer to detect which section is in the viewport
+      const observerOptions = {
+        root: null,
+        rootMargin: "0px",
+        threshold: 0.5, // Trigger when 50% of the section is visible
+      };
 
-    // Observe each section specified in navLinks
-    navLinks.forEach((nav) => {
-      const section = document.getElementById(nav.id);
-      if (section) observer.observe(section);
-    });
+      const observerCallback = (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActive(entry.target.id); // Set active section ID based on the element's ID
+          }
+        });
+      };
 
-    return () => {
-      // Unobserve when component unmounts
+      const observer = new IntersectionObserver(
+        observerCallback,
+        observerOptions
+      );
+
+      // Observe each section specified in navLinks
       navLinks.forEach((nav) => {
         const section = document.getElementById(nav.id);
-        if (section) observer.unobserve(section);
+        if (section) observer.observe(section);
       });
-    };
-  }, []);
+
+      return () => {
+        // Unobserve when component unmounts
+        navLinks.forEach((nav) => {
+          const section = document.getElementById(nav.id);
+          if (section) observer.unobserve(section);
+        });
+      };
+    }
+  }, [location.pathname]);
 
   return (
     <>
@@ -127,20 +151,36 @@ const Navbar = () => {
             aria-labelledby="hs-navbar-header-floating-collapse"
           >
             <div className="flex flex-col md:flex-row md:items-center md:justify-end gap-2 md:gap-3 mt-3 md:mt-0 py-2 md:py-0 md:ps-7">
-              {navLinks.map((nav) => (
-                <a
-                  key={nav.id}
-                  className={`${
-                    active === nav.id
-                      ? "border-gray-800 font-medium text-gray-800 focus:outline-none dark:border-neutral-200 dark:text-white"
-                      : "border-transparent text-gray-500 hover:text-gray-800 focus:outline-none dark:text-neutral-200 dark:hover:text-white"
-                  } py-0.5 md:py-3 px-4 md:px-1 border-s-2 md:border-s-0 md:border-b-2 text-[16px]`}
-                  href={`#${nav.id}`}
-                  onClick={() => setActive(nav.id)}
-                >
-                  {nav.title}
-                </a>
-              ))}
+              {navLinks.map((nav) =>
+                nav.path.startsWith("/#") ? (
+                  <HashLink
+                    key={nav.id}
+                    smooth
+                    to={nav.path}
+                    className={`${
+                      active === nav.id
+                        ? "border-gray-800 font-medium text-gray-800 focus:outline-none dark:border-neutral-200 dark:text-white"
+                        : "border-transparent text-gray-500 hover:text-gray-800 focus:outline-none dark:text-neutral-200 dark:hover:text-white"
+                    } py-0.5 md:py-3 px-4 md:px-1 border-s-2 md:border-s-0 md:border-b-2 text-[16px]`}
+                    onClick={() => setActive(nav.id)}
+                  >
+                    {nav.title}
+                  </HashLink>
+                ) : (
+                  <Link
+                    key={nav.id}
+                    to={nav.path}
+                    className={`${
+                      active === nav.id
+                        ? "border-gray-800 font-medium text-gray-800 focus:outline-none dark:border-neutral-200 dark:text-white"
+                        : "border-transparent text-gray-500 hover:text-gray-800 focus:outline-none dark:text-neutral-200 dark:hover:text-white"
+                    } py-0.5 md:py-3 px-4 md:px-1 border-s-2 md:border-s-0 md:border-b-2 text-[16px]`}
+                    onClick={() => setActive(nav.id)}
+                  >
+                    {nav.title}
+                  </Link>
+                )
+              )}
             </div>
           </div>
         </nav>

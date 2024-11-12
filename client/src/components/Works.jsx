@@ -127,7 +127,7 @@ const Works = () => {
         document.body.style.overflow = "hidden";
 
         // Scroll to the projects section
-        const projectsSection = document.getElementById("projects");
+        const projectsSection = document.getElementById("portfolio");
         if (projectsSection) {
           projectsSection.scrollIntoView({ behavior: "smooth" });
         }
@@ -160,7 +160,7 @@ const Works = () => {
     <>
       {/* Existing content */}
       <motion.div variants={textVariant()}>
-        <p className={`${styles.sectionSubText}`}>My work</p>
+        <p className={`${styles.sectionSubText}`}>My creations</p>
         <h2 className={`${styles.sectionHeadText}`}>Projects.</h2>
       </motion.div>
 
@@ -271,4 +271,4 @@ const Works = () => {
   );
 };
 
-export default SectionWrapper(Works, "projects");
+export default SectionWrapper(Works, "portfolio");

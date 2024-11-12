@@ -8,6 +8,11 @@ import Feedbacks from "./Feedbacks";
 import Contact from "./Contact";
 import CanvasLoader from "./Loader";
 import Footer from './Footer';
+import Blogs from './Blogs';
+import BlogCardHorizontal from './BlogCardHorizontal';
+import BlogList from './BlogList';
+import BlogCard from './BlogCard';
+import BlogDetails from './BlogDetails';
 
 
 export {
@@ -23,5 +28,10 @@ export {
   BallCanvas, 
   ComputersCanvas, 
   StarsCanvas,
-  Footer
+  Footer,
+  BlogCardHorizontal,
+  BlogList,
+  Blogs,
+  BlogCard,
+  BlogDetails,
 };

@@ -1,4 +1,5 @@
-import { BrowserRouter } from "react-router-dom";
+// App.js
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import {
   About,
@@ -10,6 +11,9 @@ import {
   Works,
   StarsCanvas,
   Footer,
+  Blogs,
+  BlogList,
+  BlogDetails,
 } from "./components";
 
 const App = () => {
@@ -17,18 +21,31 @@ const App = () => {
     <BrowserRouter>
       <div className="relative z-0 bg-primary">
         <Navbar />
-        <div className="relative z-0">
-          <Hero />
-          <StarsCanvas />
-        </div>
-        <About />
-        <Experience />
-        <Works />
-        <Feedbacks />
-        <div className="relative z-0">
-          <Contact />
-        </div>
-      <Footer />
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <>
+                <div className="relative z-0">
+                  <Hero />
+                  <StarsCanvas />
+                </div>
+                <About />
+                <Works />
+                <Feedbacks />
+                <Experience />
+                <Blogs /> {/* Add the Blogs component here */}
+                <div className="relative z-0">
+                  <Contact />
+                </div>
+              </>
+            }
+          />
+          <Route path="/blogs" element={<BlogList />} />
+          <Route path="/blogs/:slug" element={<BlogDetails />} />
+          {/* Add any additional routes here */}
+        </Routes>
+        <Footer />
       </div>
     </BrowserRouter>
   );
