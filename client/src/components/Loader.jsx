@@ -1,10 +1,15 @@
+// CanvasLoader.jsx
+
+import React from 'react';
 import { Html, useProgress } from "@react-three/drei";
+import Lottie from 'lottie-react'; // Import Lottie component
+import planeAnimation from '../assets/animations/plane.json'; // Import Lottie animation
 
 const CanvasLoader = () => {
   const { progress } = useProgress();
+
   return (
     <Html
-      as='div'
       center
       style={{
         display: "flex",
@@ -13,17 +18,11 @@ const CanvasLoader = () => {
         flexDirection: "column",
       }}
     >
-      <span className='canvas-loader'></span>
-      <p
-        style={{
-          fontSize: 14,
-          color: "#F1F1F1",
-          fontWeight: 800,
-          marginTop: 40,
-        }}
-      >
-        {progress.toFixed(2)}%
-      </p>
+      <Lottie
+        animationData={planeAnimation}
+        loop={true}
+        style={{ height: 300, width: 300 }}
+      />
     </Html>
   );
 };
