@@ -47,6 +47,7 @@ const BlogDetails = () => {
                 <img
                   className="size-12 rounded-full"
                   src={avatar}
+                  loading="lazy"
                   alt="Avatar"
                 />
               </div>
@@ -70,6 +71,7 @@ const BlogDetails = () => {
                                 <img
                                   className="size-8 rounded-full"
                                   src={avatar}
+                                  loading="lazy"
                                   alt="Avatar"
                                 />
                               </div>
@@ -202,6 +204,7 @@ const BlogDetails = () => {
                 className="w-full object-cover rounded-xl"
                 src="https://images.unsplash.com/photo-1670272505340-d906d8d77d03?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=560&q=80"
                 alt="Blog Image"
+                loading="lazy"
               />
               <figcaption className="mt-3 text-sm text-center text-gray-500 dark:text-neutral-500">
                 A woman sitting at a table.
@@ -243,6 +246,7 @@ const BlogDetails = () => {
                 className="w-full object-cover rounded-xl"
                 src="https://images.unsplash.com/photo-1670272498380-eb330b61f3cd?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=560&q=80"
                 alt="Blog Image"
+                loading="lazy"
               />
               <figcaption className="mt-3 text-sm text-center text-gray-500 dark:text-neutral-500">
                 A man and a woman looking at a cell phone.

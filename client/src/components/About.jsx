@@ -7,6 +7,8 @@ import { SectionWrapper } from "../hoc";
 import { fadeIn, textVariant, slideIn } from "../utils/motion";
 import { avatar } from "../assets";
 
+
+
 const About = () => {
   return (
     <>
@@ -36,6 +38,7 @@ const About = () => {
           <img
             src={avatar}
             alt={info.personalInfo.name}
+            loading="lazy"
             className="w-full h-auto max-w-sm rounded-lg shadow-lg"
           />
         </motion.div >

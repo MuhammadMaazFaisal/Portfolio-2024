@@ -19,6 +19,7 @@ const BlogCardHorizontal = ({ blog }) => {
           <img
             className="group-hover:scale-105 transition-transform duration-500 ease-in-out absolute inset-0 w-full h-full object-cover rounded-xl"
             src={blog.image}
+            loading="lazy"
             alt="Blog Image"
           />
         </div>

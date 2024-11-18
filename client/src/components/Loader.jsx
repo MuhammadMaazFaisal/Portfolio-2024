@@ -1,5 +1,3 @@
-// CanvasLoader.jsx
-
 import React from 'react';
 import { Html, useProgress } from "@react-three/drei";
 import Lottie from 'lottie-react'; // Import Lottie component

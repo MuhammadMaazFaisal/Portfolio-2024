@@ -3,7 +3,7 @@ import { Canvas, useFrame } from "@react-three/fiber";
 import { OrbitControls, Preload, useGLTF } from "@react-three/drei";
 import * as THREE from 'three';
 
-import CanvasLoader from "../Loader";
+const CanvasLoader = React.lazy(() => import("../Loader"));
 
 const Computers = ({ isMobile }) => {
   const { scene } = useGLTF("./desktop_pc/scene.gltf");

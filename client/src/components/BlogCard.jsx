@@ -17,6 +17,7 @@ const BlogCard = ({ blog }) => {
         <img
           className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-in-out rounded-xl"
           src={blog.image}
+          loading="lazy"
           alt="Blog Image"
         />
         {blog.tags.map((tag) => (

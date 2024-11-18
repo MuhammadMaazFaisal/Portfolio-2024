@@ -18,15 +18,12 @@
     "preline": "^2.5.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-parallax-tilt": "^1.7.253",
     "react-router-dom": "^6.8.1",
     "react-router-hash-link": "^2.4.3",
     "react-vertical-timeline-component": "^3.6.0",
     "three": "^0.170.0"
   },
   "devDependencies": {
-    "@types/react": "^18.0.27",
-    "@types/react-dom": "^18.0.10",
     "@vitejs/plugin-react": "^3.1.0",
     "autoprefixer": "^10.4.13",
     "postcss": "^8.4.21",
