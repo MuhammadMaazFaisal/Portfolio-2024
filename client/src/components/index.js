@@ -1,20 +1,21 @@
+import { lazy } from 'react';
 import { EarthCanvas, BallCanvas, ComputersCanvas, StarsCanvas } from './canvas';
-import Hero from "./Hero";
-import Navbar from "./Navbar";
-import About from "./About";
-import Experience from "./Experience";
-import Works from "./Works";
-import Feedbacks from "./Feedbacks";
-import Contact from "./Contact";
-import CanvasLoader from "./Loader";
-import Footer from './Footer';
-import Blogs from './Blogs';
-import BlogCardHorizontal from './BlogCardHorizontal';
-import BlogList from './BlogList';
-import BlogCard from './BlogCard';
-import BlogDetails from './BlogDetails';
-import {SectionText } from './TextComponents';
-import { MotionDiv, MotionParagraph, MotionImage } from './MotionComponents';
+
+const Hero = lazy(() => import("./Hero"));
+const Navbar = lazy(() => import("./Navbar"));
+const About = lazy(() => import("./About"));
+const Experience = lazy(() => import("./Experience"));
+const Works = lazy(() => import("./Works"));
+const Feedbacks = lazy(() => import("./Feedbacks"));
+const Contact = lazy(() => import("./Contact"));
+const Footer = lazy(() => import('./Footer'));
+const Blogs = lazy(() => import('./Blogs'));
+const BlogCardHorizontal = lazy(() => import('./BlogCardHorizontal'));
+const BlogList = lazy(() => import('./BlogList'));
+const BlogCard = lazy(() => import('./BlogCard'));
+const BlogDetails = lazy(() => import('./BlogDetails'));
+const { SectionText } = lazy(() => import('./TextComponents'));
+const { MotionDiv, MotionParagraph, MotionImage } = lazy(() => import('./MotionComponents'));
 
 export {
   Hero,
@@ -24,7 +25,6 @@ export {
   Works,
   Feedbacks,
   Contact,
-  CanvasLoader,
   EarthCanvas, 
   BallCanvas, 
   ComputersCanvas, 

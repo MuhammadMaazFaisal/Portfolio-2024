@@ -8,8 +8,6 @@ import {
   useTexture,
 } from "@react-three/drei";
 
-const CanvasLoader = React.lazy(() => import("../Loader"));
-
 const Ball = memo((props) => {
   const [decal] = useTexture([props.imgUrl]);
 
@@ -44,7 +42,7 @@ const BallCanvas = ({ icon }) => {
       dpr={[1, 2]}
       gl={{ preserveDrawingBuffer: true }}
     >
-      <Suspense fallback={<CanvasLoader />}>
+      <Suspense fallback={null}>
         <OrbitControls enableZoom={false} />
         <Ball imgUrl={icon} />
       </Suspense>

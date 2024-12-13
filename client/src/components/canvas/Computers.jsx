@@ -3,8 +3,6 @@ import { Canvas, useFrame } from "@react-three/fiber";
 import { OrbitControls, Preload, useGLTF } from "@react-three/drei";
 import * as THREE from 'three';
 
-const CanvasLoader = React.lazy(() => import("../Loader"));
-
 const Computers = memo(({ isMobile }) => {
   const { scene } = useGLTF("./desktop_pc/scene.gltf");
   const groupRef = useRef();
@@ -81,7 +79,7 @@ const ComputersCanvas = () => {
       camera={{ position: [20, 3, 5], fov: 25 }}
       gl={{ preserveDrawingBuffer: true }}
     >
-      <Suspense fallback={<CanvasLoader />}>
+      <Suspense fallback={null}>
         <OrbitControls
           enableZoom={false}
           maxPolarAngle={Math.PI / 2}

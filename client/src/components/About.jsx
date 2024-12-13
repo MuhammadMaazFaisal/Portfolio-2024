@@ -31,7 +31,7 @@ const About = () => {
 
       <MotionDiv
         variant="fadeIn"
-        variantProps={["right", "spring", 0.5, 0.75]}
+        variantProps={["left", "spring", 0.5, 0.75]}
         className="flex-1 mt-10 md:mt-0"
       >
         <MotionImage
