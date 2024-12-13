@@ -1,4 +1,4 @@
-import React, { Suspense } from "react";
+import React, { Suspense, memo } from "react";
 import { Canvas } from "@react-three/fiber";
 import {
   Decal,
@@ -10,7 +10,7 @@ import {
 
 const CanvasLoader = React.lazy(() => import("../Loader"));
 
-const Ball = (props) => {
+const Ball = memo((props) => {
   const [decal] = useTexture([props.imgUrl]);
 
   return (
@@ -35,7 +35,7 @@ const Ball = (props) => {
       </mesh>
     </Float>
   );
-};
+});
 
 const BallCanvas = ({ icon }) => {
   return (

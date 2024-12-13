@@ -1,18 +1,17 @@
-import React, { Suspense, useEffect, useState, useRef } from "react";
+import React, { Suspense, useEffect, useState, useRef, memo } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { OrbitControls, Preload, useGLTF } from "@react-three/drei";
 import * as THREE from 'three';
 
 const CanvasLoader = React.lazy(() => import("../Loader"));
 
-const Computers = ({ isMobile }) => {
+const Computers = memo(({ isMobile }) => {
   const { scene } = useGLTF("./desktop_pc/scene.gltf");
   const groupRef = useRef();
   const [rotationStarted, setRotationStarted] = useState(false);
   const rotationY = useRef(Math.PI); // Start at 180 degrees (showing the back)
   const targetRotationY = -0.2; // Desired final rotation
 
-  // Start the rotation after the model has loaded
   useEffect(() => {
     if (scene) {
       setRotationStarted(true);
@@ -21,7 +20,6 @@ const Computers = ({ isMobile }) => {
 
   useFrame((state, delta) => {
     if (groupRef.current && rotationStarted) {
-      // Adjust the interpolation factor for a slower rotation
       rotationY.current = THREE.MathUtils.lerp(
         rotationY.current,
         targetRotationY,
@@ -30,10 +28,8 @@ const Computers = ({ isMobile }) => {
 
       groupRef.current.rotation.y = rotationY.current;
 
-      // Stop the animation when close enough to the target rotation
       if (Math.abs(rotationY.current - targetRotationY) < 0.001) {
         groupRef.current.rotation.y = targetRotationY;
-        // Stop further updates
         setRotationStarted(false);
       }
     }
@@ -41,7 +37,6 @@ const Computers = ({ isMobile }) => {
 
   return (
     <group ref={groupRef} rotation={[0, Math.PI, 0]}>
-      {/* Lighting setup */}
       <directionalLight
         position={[10, 30, 5]}
         intensity={1.5}
@@ -59,8 +54,6 @@ const Computers = ({ isMobile }) => {
         shadow-mapSize={1024}
       />
       <pointLight intensity={1} />
-
-      {/* The computer model */}
       <primitive
         object={scene}
         scale={isMobile ? 0.6 : 0.8}
@@ -68,30 +61,17 @@ const Computers = ({ isMobile }) => {
       />
     </group>
   );
-};
+});
 
 const ComputersCanvas = () => {
-  const [isMobile, setIsMobile] = useState(false);
+  const [isMobile, setIsMobile] = useState(window.matchMedia("(max-width: 500px)").matches);
 
   useEffect(() => {
-    // Add a listener for changes to the screen size
     const mediaQuery = window.matchMedia("(max-width: 500px)");
+    const handleMediaQueryChange = (event) => setIsMobile(event.matches);
 
-    // Set the initial value of the `isMobile` state variable
-    setIsMobile(mediaQuery.matches);
-
-    // Define a callback function to handle changes to the media query
-    const handleMediaQueryChange = (event) => {
-      setIsMobile(event.matches);
-    };
-
-    // Add the callback function as a listener for changes to the media query
     mediaQuery.addEventListener("change", handleMediaQueryChange);
-
-    // Remove the listener when the component is unmounted
-    return () => {
-      mediaQuery.removeEventListener("change", handleMediaQueryChange);
-    };
+    return () => mediaQuery.removeEventListener("change", handleMediaQueryChange);
   }, []);
 
   return (
@@ -107,7 +87,6 @@ const ComputersCanvas = () => {
           maxPolarAngle={Math.PI / 2}
           minPolarAngle={Math.PI / 2}
         />
-        {/* Place the Computers component inside the Canvas */}
         <Computers isMobile={isMobile} />
       </Suspense>
 

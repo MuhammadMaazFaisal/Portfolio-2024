@@ -13,7 +13,8 @@ import BlogCardHorizontal from './BlogCardHorizontal';
 import BlogList from './BlogList';
 import BlogCard from './BlogCard';
 import BlogDetails from './BlogDetails';
-
+import {SectionText } from './TextComponents';
+import { MotionDiv, MotionParagraph, MotionImage } from './MotionComponents';
 
 export {
   Hero,
@@ -34,4 +35,8 @@ export {
   Blogs,
   BlogCard,
   BlogDetails,
+  SectionText,
+  MotionDiv,
+  MotionParagraph,
+  MotionImage,
 };

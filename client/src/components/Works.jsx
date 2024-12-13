@@ -7,6 +7,8 @@ import { SectionWrapper } from "../hoc";
 import { projects } from "../constants";
 import { fadeIn, textVariant, zoomIn } from "../utils/motion";
 import "preline"; // Ensure Preline.js is imported
+import { SectionText } from './TextComponents';
+import { MotionDiv, MotionParagraph } from './MotionComponents';
 
 const slugify = (str) => {
   return str
@@ -42,8 +44,9 @@ const ProjectCard = ({
   };
 
   return (
-    <motion.div
-      variants={fadeIn("up", "spring", index * 0.5, 0.75)}
+    <MotionDiv
+      variant="fadeIn"
+      variantProps={["up", "spring", index * 0.5, 0.75]}
       onClick={onClick}
       className="hs-tooltip relative"
       onMouseMove={handleMouseMove}
@@ -107,7 +110,7 @@ const ProjectCard = ({
       >
         Click to view more information
       </span>
-    </motion.div>
+    </MotionDiv>
   );
 };
 
@@ -159,15 +162,15 @@ const Works = () => {
 
   return (
     <>
-      {/* Existing content */}
-      <motion.div variants={textVariant()}>
-        <p className={`${styles.sectionSubText}`}>My creations</p>
-        <h2 className={`${styles.sectionHeadText}`}>Projects.</h2>
-      </motion.div>
+      <MotionDiv variant="textVariant">
+        <SectionText variant="subText">My creations</SectionText>
+        <SectionText variant="headText">Projects.</SectionText>
+      </MotionDiv>
 
       <div className="w-full flex">
-        <motion.p
-          variants={fadeIn("", "", 0.1, 1)}
+        <MotionParagraph
+          variant="fadeIn"
+          variantProps={["", "", 0.1, 1]}
           className="mt-3 text-secondary text-[17px] max-w-3xl leading-[30px]"
         >
           Following projects showcase my skills and experience through
@@ -175,7 +178,7 @@ const Works = () => {
           links to code repositories and live demos. It reflects my ability to
           solve complex problems, work with different technologies, and manage
           projects effectively.
-        </motion.p>
+        </MotionParagraph>
       </div>
 
       <div className="mt-20 flex flex-wrap gap-7  justify-center">
@@ -195,8 +198,9 @@ const Works = () => {
           role="dialog"
           aria-labelledby="project-modal-label"
         >
-          <motion.div
-            variants={zoomIn(0.1, 0.3)}
+          <MotionDiv
+            variant="zoomIn"
+            variantProps={[0.1, 0.3]}
             initial="hidden"
             animate="show"
             exit="hidden"
@@ -265,7 +269,7 @@ const Works = () => {
                 </p>
               </div>
             </div>
-          </motion.div>
+          </MotionDiv>
         </div>
       )}
     </>

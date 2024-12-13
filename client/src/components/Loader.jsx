@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { Html, useProgress } from "@react-three/drei";
 import Lottie from 'lottie-react'; // Import Lottie component
 import planeAnimation from '../assets/animations/plane.json'; // Import Lottie animation
@@ -25,4 +25,4 @@ const CanvasLoader = () => {
   );
 };
 
-export default CanvasLoader;
+export default memo(CanvasLoader);

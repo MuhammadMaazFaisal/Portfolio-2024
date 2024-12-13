@@ -1,10 +1,11 @@
 import React from "react";
 import { motion } from "framer-motion";
-
 import { styles } from "../styles";
 import { SectionWrapper } from "../hoc";
 import { fadeIn, textVariant } from "../utils/motion";
 import { testimonials } from "../constants";
+import { SectionText } from './TextComponents';
+import { MotionDiv } from './MotionComponents';
 
 const FeedbackCard = ({
   index,
@@ -14,8 +15,9 @@ const FeedbackCard = ({
   company,
   image,
 }) => (
-  <motion.div
-    variants={fadeIn("", "spring", index * 0.5, 0.75)}
+  <MotionDiv
+    variant="fadeIn"
+    variantProps={["", "spring", index * 0.5, 0.75]}
     className='bg-black-200 p-10 rounded-3xl xs:w-[320px] w-full'
   >
     <p className='text-white font-black text-[48px]'>"</p>
@@ -41,21 +43,19 @@ const FeedbackCard = ({
         />
       </div>
     </div>
-  </motion.div>
+  </MotionDiv>
 );
 
 const Feedbacks = () => {
   return (
     <div className={`mt-12 bg-black-100 rounded-[20px]`}>
-      <div
-        className={`bg-tertiary rounded-2xl ${styles.padding} min-h-[300px]`}
-      >
-        <motion.div variants={textVariant()}>
-          <p className={styles.sectionSubText}>What others say</p>
-          <h2 className={styles.sectionHeadText}>Client Success Stories.</h2>
-        </motion.div>
+      <div className={`bg-tertiary rounded-2xl ${styles.padding} min-h-[300px]`}>
+        <MotionDiv variant="textVariant">
+          <SectionText variant="subText">What others say</SectionText>
+          <SectionText variant="headText">Client Success Stories.</SectionText>
+        </MotionDiv>
       </div>
-      <div className={`-mt-20 pb-14 ${styles.paddingX} flex flex-wrap gap-7  justify-center`}>
+      <div className={`-mt-20 pb-14 ${styles.paddingX} flex flex-wrap gap-7 justify-center`}>
         {testimonials.map((testimonial, index) => (
           <FeedbackCard key={testimonial.name} index={index} {...testimonial} />
         ))}

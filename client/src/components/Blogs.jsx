@@ -5,19 +5,21 @@ import BlogCard from "./BlogCard";
 import { fadeIn, textVariant } from "../utils/motion";
 import { SectionWrapper } from "../hoc";
 import { styles } from "../styles";
+import { SectionText } from './TextComponents';
+import { MotionDiv } from './MotionComponents';
 
 const Blogs = () => {
   return (
     <>
-      <motion.div
-        variants={textVariant()}
+      <MotionDiv
+        variant="textVariant"
         className="max-w-2xl mx-auto text-center mb-10 lg:mb-14"
       >
-        <h2 className={styles.sectionHeadText}>From My Journal</h2>
-        <p className="mt-1 text-gray-600 dark:text-neutral-400">
-        I'd love to share my thoughts, experiences, and stories with you.
-        </p>
-      </motion.div>
+        <SectionText variant="headText">From My Journal</SectionText>
+        <SectionText variant="subText" classNames="mt-1 text-gray-600 dark:text-neutral-400">
+          I'd love to share my thoughts, experiences, and stories with you.
+        </SectionText>
+      </MotionDiv>
 
       <div className="mt-20 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {blogs.slice(0, 2).map((blog) => (

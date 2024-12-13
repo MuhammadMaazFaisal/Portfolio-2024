@@ -21,14 +21,26 @@ import tailwind from "./tech/tailwind.png";
 import typescript from "./tech/typescript.png";
 import threejs from "./tech/threejs.svg";
 
-import meta from "./company/meta.png";
-import shopify from "./company/shopify.png";
-import starbucks from "./company/starbucks.png";
-import tesla from "./company/tesla.png";
+import ibexoft from "./company/ibexoft.png";
+import eightyTwoSolutions from "./company/82-solutions.png";
+import esolace from "./company/esolace-tech.png";
+import upwork from "./company/upwork.png";
 
 import carrent from "./carrent.png";
 import jobit from "./jobit.png";
 import tripguide from "./tripguide.png";
+
+import bodymind from "./projects/bodymind.mp4";
+import buybest from "./projects/buybest.mp4";
+import dollarmania from "./projects/dollarmania.webm";
+import carhire from "./projects/carhire.mp4";
+import getz from "./projects/getz.mp4";
+import mannyspizzeria from "./projects/mannyspizzeria.mp4";
+import staewynn from "./projects/staewynn.webm";
+import tasavvur from "./projects/tasavvur.mp4";
+import zalmi from "./projects/zalmi.mp4";
+import neetusinghsuhag from "./projects/neetusinghsuhag.mp4";
+import avatar from "./avatar.jpg";
 
 export {
   logo,
@@ -52,11 +64,22 @@ export {
   tailwind,
   typescript,
   threejs,
-  meta,
-  shopify,
-  starbucks,
-  tesla,
+  ibexoft,
+  eightyTwoSolutions,
+  esolace,
+  upwork,
   carrent,
   jobit,
   tripguide,
+  bodymind,
+  buybest,
+  dollarmania,
+  carhire,
+  getz,
+  mannyspizzeria,
+  staewynn,
+  tasavvur,
+  zalmi,
+  neetusinghsuhag,
+  avatar,
 };
