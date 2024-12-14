@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-function JobSidebar() {
+function BlogSidebar() {
 
   const [companySetting, setCompanySetting] = useState(true);
   const [immigrationSetting, setImmigrationSetting] = useState(false);
@@ -32,7 +32,7 @@ function JobSidebar() {
           </svg>
         </div>
         <div className="relative">
-          <div className="text-sm font-medium text-slate-800 mb-2">Remember to keep track of your job research.</div>
+          <div className="text-sm font-medium text-slate-800 mb-2">Remember to keep track of your blog research.</div>
           <div className="text-right">
             <a className="text-sm font-medium text-indigo-500 hover:text-indigo-600" href="#0">
               Create Alert -&gt;
@@ -45,7 +45,7 @@ function JobSidebar() {
         <div className="grid md:grid-cols-2 xl:grid-cols-1 gap-6">
           {/* Group 1 */}
           <div>
-            <div className="text-sm text-slate-800 font-semibold mb-3">Job Types</div>
+            <div className="text-sm text-slate-800 font-semibold mb-3">Blog Types</div>
             <ul className="space-y-2">
               <li>
                 <label className="flex items-center">
@@ -157,4 +157,4 @@ function JobSidebar() {
   );
 }
 
-export default JobSidebar;
+export default BlogSidebar;

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-function JobListItem(props) {
+function BlogListItem(props) {
   return (
     <div
       className={`shadow-lg rounded-sm border px-5 py-4 ${props.type === 'Featured' ? 'bg-amber-50 border-amber-300' : 'bg-white border-slate-200'}`}
@@ -43,4 +43,4 @@ function JobListItem(props) {
   );
 }
 
-export default JobListItem;
+export default BlogListItem;

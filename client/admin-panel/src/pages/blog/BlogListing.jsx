@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 
 import Sidebar from '../../partials/Sidebar';
 import Header from '../../partials/Header';
-import JobSidebar from '../../partials/job/JobSidebar';
+import BlogSidebar from '../../partials/blog/BlogSidebar';
 import DropdownSort from '../../components/DropdownSort';
-import JobListItem from '../../partials/job/JobListItem';
+import BlogListItem from '../../partials/blog/BlogListItem';
 import PaginationNumeric from '../../components/PaginationNumeric';
 
 import Image01 from '../../images/company-icon-05.svg';
@@ -15,7 +15,7 @@ import Image05 from '../../images/company-icon-08.svg';
 import Image06 from '../../images/company-icon-01.svg';
 import Image07 from '../../images/company-icon-02.svg';
 
-function JobListing() {
+function BlogListing() {
 
   const items = [
     {
@@ -23,7 +23,7 @@ function JobListing() {
       image: Image01,
       company: 'Company 01',
       role: 'Senior Web App Designer',
-      link: '/job/job-post',
+      link: '/blog/blog-post',
       details: 'Contract / Remote / New York, NYC',
       date: 'Jan 4',
       type: 'Featured',
@@ -34,7 +34,7 @@ function JobListing() {
       image: Image01,
       company: 'Company 02',
       role: 'Senior Full Stack Engineer',
-      link: '/job/job-post',
+      link: '/blog/blog-post',
       details: 'Contract / Remote / New York, NYC',
       date: 'Jan 7',
       type: 'New',
@@ -45,7 +45,7 @@ function JobListing() {
       image: Image02,
       company: 'Company 03',
       role: 'Ruby on Rails Engineer',
-      link: '/job/job-post',
+      link: '/blog/blog-post',
       details: 'Contract / Remote / New York, NYC',
       date: 'Jan 7',
       type: 'New',
@@ -56,7 +56,7 @@ function JobListing() {
       image: Image03,
       company: 'Company 04',
       role: 'Senior Software Engineer Backend',
-      link: '/job/job-post',
+      link: '/blog/blog-post',
       details: 'Full-time / Remote / Anywhere',
       date: 'Jan 7',
       type: 'New',
@@ -67,7 +67,7 @@ function JobListing() {
       image: Image04,
       company: 'Company 05',
       role: 'React.js Software Developer',
-      link: '/job/job-post',
+      link: '/blog/blog-post',
       details: 'Full-time / Remote / London, UK',
       date: 'Jan 6',
       type: 'New',
@@ -78,7 +78,7 @@ function JobListing() {
       image: Image05,
       company: 'Company 06',
       role: 'Senior Full Stack Rails Developer',
-      link: '/job/job-post',
+      link: '/blog/blog-post',
       details: 'Part-time / Remote / Milan, IT',
       date: 'Jan 6',
       type: 'New',
@@ -89,7 +89,7 @@ function JobListing() {
       image: Image06,
       company: 'Company 07',
       role: 'Principal Software Engineer',
-      link: '/job/job-post',
+      link: '/blog/blog-post',
       details: 'Freelance / Remote / London, UK',
       date: 'Jan 6',
       type: 'New',
@@ -100,7 +100,7 @@ function JobListing() {
       image: Image04,
       company: 'Company 08',
       role: 'Contract React Native Engineer',
-      link: '/job/job-post',
+      link: '/blog/blog-post',
       details: 'Contract / Remote / Miami, FL',
       date: 'Jan 6',
       type: 'New',
@@ -111,7 +111,7 @@ function JobListing() {
       image: Image05,
       company: 'Company 09',
       role: 'Senior Client Engineer (React & React Native)',
-      link: '/job/job-post',
+      link: '/blog/blog-post',
       details: 'Full-time / Remote / Lincoln, NE',
       date: 'Jan 5',
       type: 'New',
@@ -122,7 +122,7 @@ function JobListing() {
       image: Image07,
       company: 'Company 10',
       role: 'QA Automation Engineer',
-      link: '/job/job-post',
+      link: '/blog/blog-post',
       details: 'Contract / Remote / Anywhere',
       date: 'Jan 5',
       type: 'New',
@@ -152,15 +152,15 @@ function JobListing() {
 
               {/* Left: Title */}
               <div className="mb-4 sm:mb-0">
-                <h1 className="text-2xl md:text-3xl text-slate-800 font-bold">Search For Jobs ✨</h1>
+                <h1 className="text-2xl md:text-3xl text-slate-800 font-bold">Search For Blogs ✨</h1>
               </div>
 
-              {/* Post a job button */}
+              {/* Post a blog button */}
               <button className="btn bg-indigo-500 hover:bg-indigo-600 text-white">
                 <svg className="w-4 h-4 fill-current opacity-50 shrink-0" viewBox="0 0 16 16">
                   <path d="M15 7H9V1c0-.6-.4-1-1-1S7 .4 7 1v6H1c-.6 0-1 .4-1 1s.4 1 1 1h6v6c0 .6.4 1 1 1s1-.4 1-1V9h6c.6 0 1-.4 1-1s-.4-1-1-1z" />
                 </svg>
-                <span className="hidden xs:block ml-2">Post A Job</span>
+                <span className="hidden xs:block ml-2">Post A Blog</span>
               </button>
 
             </div>
@@ -169,7 +169,7 @@ function JobListing() {
             <div className="flex flex-col space-y-10 sm:flex-row sm:space-x-6 sm:space-y-0 md:flex-col md:space-x-0 md:space-y-10 xl:flex-row xl:space-x-6 xl:space-y-0 mt-9">
 
               {/* Sidebar */}
-              <JobSidebar />
+              <BlogSidebar />
 
               {/* Content */}
               <div className='w-full'>
@@ -177,8 +177,8 @@ function JobListing() {
                 {/* Search form */}
                 <div className="mb-5">
                   <form className="relative">
-                    <label htmlFor="job-search" className="sr-only">Search</label>
-                    <input id="job-search" className="form-input w-full pl-9 focus:border-slate-300" type="search" placeholder="Search job title or keyword…" />
+                    <label htmlFor="blog-search" className="sr-only">Search</label>
+                    <input id="blog-search" className="form-input w-full pl-9 focus:border-slate-300" type="search" placeholder="Search blog title or keyword…" />
                     <button className="absolute inset-0 right-auto group" type="submit" aria-label="Search">
                       <svg className="w-4 h-4 shrink-0 fill-current text-slate-400 group-hover:text-slate-500 ml-3 mr-2" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
                         <path d="M7 14c-3.86 0-7-3.14-7-7s3.14-7 7-7 7 3.14 7 7-3.14 7-7 7zM7 2C4.243 2 2 4.243 2 7s2.243 5 5 5 5-2.243 5-5-2.243-5-5-5z" />
@@ -188,9 +188,9 @@ function JobListing() {
                   </form>
                 </div>
 
-                {/* Jobs header */}
+                {/* Blogs header */}
                 <div className="flex justify-between items-center mb-4">
-                  <div className="text-sm text-slate-500 italic">Showing 289 Jobs</div>
+                  <div className="text-sm text-slate-500 italic">Showing 289 Blogs</div>
                   {/* Sort */}
                   <div className="text-sm">
                     <span>Sort by </span>
@@ -198,11 +198,11 @@ function JobListing() {
                   </div>
                 </div>
 
-                {/* Jobs list */}
+                {/* Blogs list */}
                 <div className='space-y-2'>
                   {items.map((item) => {
                     return (
-                      <JobListItem
+                      <BlogListItem
                         key={item.id}
                         id={item.id}
                         image={item.image}
@@ -235,4 +235,4 @@ function JobListing() {
   );
 }
 
-export default JobListing;
+export default BlogListing;

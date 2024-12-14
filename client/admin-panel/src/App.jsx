@@ -11,7 +11,7 @@ import './charts/ChartjsConfig';
 
 // Import pages
 import Analytics from './pages/Analytics';
-import JobListing from './pages/job/JobListing';
+import BlogListing from './pages/blog/BlogListing';
 
 function App() {
 
@@ -27,7 +27,7 @@ function App() {
     <>
       <Routes>
         <Route exact path="/" element={<Analytics />} />
-        <Route path="/blogs" element={<JobListing />} />
+        <Route path="/blogs" element={<BlogListing />} />
       </Routes>
     </>
   );
