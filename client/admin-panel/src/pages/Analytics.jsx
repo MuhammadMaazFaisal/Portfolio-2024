@@ -75,8 +75,6 @@ function Analytics() {
               <AnalyticsCard09 />
               {/* Polar chart (Sessions By Gender) */}
               <AnalyticsCard10 />
-              {/* Table (Top Products) */}
-              <AnalyticsCard11 />
 
             </div>
 

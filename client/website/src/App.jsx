@@ -1,5 +1,6 @@
-import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
+import { createBrowserRouter, RouterProvider, Outlet, Navigate } from "react-router-dom";
 import { Suspense } from "react";
+import { Auth0Provider, useAuth0 } from "@auth0/auth0-react";
 
 import {
   About,
@@ -27,6 +28,16 @@ const MainLayout = () => {
       <Footer />
     </div>
   );
+};
+
+const AuthenticatedRoute = ({ element }) => {
+  const { isAuthenticated, isLoading } = useAuth0();
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  return isAuthenticated ? element : <Navigate to="/" />;
 };
 
 // Router Configuration with Future Flags
@@ -79,11 +90,22 @@ const router = createBrowserRouter(
 
 const App = () => {
   return (
-    <div className="relative z-0 bg-primary">
-      <Suspense fallback={null}>
-        <RouterProvider router={router} />
-      </Suspense>
-    </div>
+    <Auth0Provider
+      domain={import.meta.env.VITE_AUTH0_DOMAIN}
+      clientId={import.meta.env.VITE_AUTH0_CLIENT_ID}
+      authorizationParams={{
+        redirect_uri: import.meta.env.VITE_AUTH0_REDIRECT_URI,
+        prompt: 'select_account'
+      }}
+      cacheLocation="localstorage"
+      useRefreshTokens={true}
+    >
+      <div className="relative z-0 bg-primary">
+        <Suspense fallback={null}>
+          <RouterProvider router={router} />
+        </Suspense>
+      </div>
+    </Auth0Provider>
   );
 };
 
